@@ -1,19 +1,15 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace CapaPresentacionAdmin
+namespace CapaPresentacionTienda
 {
     public class BundleConfig
     {
         // Para obtener más información sobre las uniones, visite https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new Bundle("~/bundles/jquery").Include(
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
-
-            bundles.Add(new Bundle("~/bundles/complementos").Include(
-                       "~/Scripts/fontawesome/all.min.js",
-                       "~/Scripts/scripts.js"));
 
             //bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
             //            "~/Scripts/jquery.validate*"));
