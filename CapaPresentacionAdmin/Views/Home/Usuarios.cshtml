@@ -202,6 +202,9 @@
                         contentType: "application/json; charset=utf-8",
                         success: function (data) {
 
+                            //"debugger" es un punto de depuracion mediante la consola del navegador para depurar codigo JS
+                            //debugger;
+
                             if (data.resultado) {
                                 tabladata.row(usuarioseleccionado).remove().draw();
                             } else {
