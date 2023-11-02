@@ -34,10 +34,25 @@ namespace CapaNegocio
 
             if (string.IsNullOrEmpty(Mensaje))
             {
-                string pass = "passwordStrong123";
-                usr.Clave = CN_Recursos.ConvertSha256(pass);
 
-                return objCapaDato.Registrar(usr, out Mensaje);
+                string pass = CN_Recursos.GenPassword();
+
+                string cc = "Registro de Cuenta";
+                string msj_email = "<h3>La cuenta fue registrada satisfactoriamente</h3></br><p>Tu clave password para acceder es: !password!</p>";
+                msj_email = msj_email.Replace("!password!", pass);
+
+                bool rpta = CN_Recursos.SendEmail(usr.Correo, cc, msj_email);
+
+                if (rpta)
+                {
+                    usr.Clave = CN_Recursos.ConvertSha256(pass);
+                    return objCapaDato.Registrar(usr, out Mensaje);
+                }
+                else
+                {
+                    Mensaje = "No se pudo enviar el correo";
+                    return 0;
+                }
 
             }
             else
