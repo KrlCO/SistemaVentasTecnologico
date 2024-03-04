@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
-
+using System.Xml.Schema;
 
 namespace CapaDatos
 {
@@ -152,6 +152,54 @@ namespace CapaDatos
             return resultado;
         }
 
+        public bool ChangePass(int idUsuario, string newpass, out string Mensaje)
+        {
+            bool resultado = false;
+            Mensaje = string.Empty;
+
+            try
+            {
+                using (SqlConnection xcon = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_UpdatePassUser", xcon);
+                    cmd.Parameters.AddWithValue("@id", idUsuario);
+                    cmd.Parameters.AddWithValue("@nuevaclave", newpass);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    xcon.Open();
+                    resultado = cmd.ExecuteNonQuery() > 0 ? true : false;
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = false;
+                Mensaje = ex.Message;
+            }
+            return resultado;
+        }
+
+        public bool ResetPassword(int idusuario, string pass, out string Mensaje)
+        {
+            bool resultado = false;
+            Mensaje = string.Empty;
+
+            try
+            {
+                using(SqlConnection xcon = new SqlConnection(Conexion.cn))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_resetPassUser", xcon);
+                    cmd.Parameters.AddWithValue("@id", idusuario);
+                    cmd.Parameters.AddWithValue("@clave", pass);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    xcon.Open();
+                    resultado = cmd.ExecuteNonQuery() > 0 ? true : false;
+                }
+            }catch(Exception ex)
+            {
+                resultado = false;
+                Mensaje = ex.Message;
+            }
+            return resultado;
+        }
 
 
 
