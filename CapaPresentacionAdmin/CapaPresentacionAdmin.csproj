@@ -544,6 +544,7 @@
     <Content Include="Views\Mantenedor\Producto.cshtml" />
     <Content Include="Views\Acceso\Index.cshtml" />
     <Content Include="Views\Acceso\ChangePassword.cshtml" />
+    <Content Include="Views\Acceso\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

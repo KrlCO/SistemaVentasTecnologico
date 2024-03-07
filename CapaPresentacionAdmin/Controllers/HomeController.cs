@@ -12,6 +12,8 @@ using ClosedXML.Excel;
 
 namespace CapaPresentacionAdmin.Controllers
 {
+    [Authorize] //Para poder autorizar el acceso solo si se ha utilizado las credenciales adecuadas
+    //Dentro del Web.config se termino de configurar la restriccion
     public class HomeController : Controller
     {
         public ActionResult Index()
