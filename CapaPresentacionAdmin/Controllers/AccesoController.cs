@@ -136,5 +136,11 @@ namespace CapaPresentacionAdmin.Controllers
             }
         }
 
+        public ActionResult CerrarSesion()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Acceso");
+        }
+
     }
 }
